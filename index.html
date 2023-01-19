@@ -41,19 +41,112 @@
           </div>
           <div class="col-md-4 col-xl-2 mt-4">
             <a
-              href="#reserveForm"
               role="button"
               class="btn btn-lg btn-info"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              data-html="true"
-              title="Or call us at <br /><strong>1-206-555-1234</strong>"
+              data-toggle="modal"
+              data-target="#reserveModal"
+              id="#reserveModal"
               >Reserve Campsite</a
             >
           </div>
         </div>
       </div>
     </header>
+
+    <!--Reserve Campsite Modal-->
+    <div id="reserveModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-info text-white">
+            <h3 class="modal-title">Reserve a Campsite</h3>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="reserveForm">
+              <div class="form-group row">
+                <label class="col-sm-6 col-form-label" for="numCampers"
+                  >Number of Campers</label
+                >
+                <div class="col col-sm-6">
+                  <select
+                    name="numCampers"
+                    id="numCampers"
+                    class="form-control"
+                  >
+                    <option value="Select...">Select...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="date" class="col-sm-6 col-form-label">Date</label>
+                <div class="col col-sm-6">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date"
+                    value="date"
+                    name="date"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="date" class="col-sm-6 col-form-label"
+                  >Campsite Type</label
+                >
+                <div
+                  class="col-2 btn-group btn-group-toggle"
+                  data-toggle="buttons"
+                >
+                  <label class="btn btn-success active">
+                    <input
+                      type="radio"
+                      name="siteType"
+                      id="siteTent"
+                      value="tent"
+                      autocomplete="off"
+                      checked
+                    />
+                    Tent
+                  </label>
+                  <label class="btn btn-primary">
+                    <input
+                      type="radio"
+                      name="siteType"
+                      id="siteRV"
+                      value="RV"
+                      autocomplete="off"
+                    />
+                    RV
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button type="search" class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
       <div class="container">
@@ -125,6 +218,7 @@
                       type="email"
                       class="form-control form-control-sm"
                       id="loginEmail"
+                      value="email"
                       placeholder="Enter email"
                     />
                   </div>
@@ -134,6 +228,7 @@
                       type="password"
                       class="form-control form-control-sm"
                       id="loginPassword"
+                      value="password"
                       placeholder="Password"
                     />
                   </div>
@@ -239,6 +334,14 @@
               <span class="carousel-control-next-icon"></span>
               <span class="sr-only">Next</span>
             </a>
+            <div class="btn-group" id="carouselButton">
+              <button class="btn btn-danger btn-sm" id="carouselPause">
+                <i class="fa fa-pause"></i>
+              </button>
+              <button class="btn btn-danger btn-sm" id="carouselPlay">
+                <i class="fa fa-play"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -309,57 +412,6 @@
           </div>
         </div>
       </div>
-
-      <div class="row row-content">
-        <div class="col col-sm-6 mx-auto">
-          <div class="card">
-            <h3 class="card-header bg-info text-white">Reserve a Campsite</h3>
-            <div class="card-body">
-              <form id="reserveForm">
-                <div class="form-group row">
-                  <label class="col-sm-6 col-form-label"
-                    >Number of Campers</label
-                  >
-                  <div class="col col-sm-6">
-                    <select
-                      name="numCampers"
-                      id="numCampers"
-                      class="form-control"
-                    >
-                      <option value="Select...">Select...</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="date" class="col-sm-6 col-form-label">Date</label>
-                  <div class="col col-sm-6">
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="date"
-                      name="date"
-                      placeholder="mm/dd/yyyy"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <button type="search" class="btn btn-primary">
-                      Search
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <footer class="site-footer">
@@ -414,10 +466,19 @@
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+  
+    <!--will set the carousel image cycle interval to 2000 ms upon load (the default is 5000 ms otherwise), and implement pause/play functionality via the jQuery click() method-->
     <script>
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
+      $(function() {
+          $(".carousel").carousel( { interval: 2000, pause: "false" } );
+          $("#carouselPause").click(function(){
+              $(".carousel").carousel("pause");
+          });
+          $("#carouselPlay").click(function(){
+              $(".carousel").carousel("cycle");
+          });
       });
-    </script>
+  </script>
   </body>
 </html>
